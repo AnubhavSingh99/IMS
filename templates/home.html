@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Insurance Management System - Home</title>
+</head>
+<body>
+    <h1>Welcome to Bajaj Finance - Online Insurance</h1>
+    <ul>
+        <li><a href="{{ url_for('customer_registration') }}">Customer Registration</a></li>
+        <li><a href="{{ url_for('customer_login') }}">Customer Login</a></li>
+        <li><a href="{{ url_for('agent_login') }}">Agent Login</a></li>
+        <li><a href="#" onclick="window.close();">Exit</a></li>
+    </ul>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+</body>
+</html>

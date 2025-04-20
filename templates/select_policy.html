@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select Policy</title>
+</head>
+<body>
+    <h1>Select Insurance Policy</h1>
+    <form method="post" action="{{ url_for('select_policy') }}">
+        <h2>Health Insurance</h2>
+        {% for idx, policy in enumerate(health_insurances) %}
+            <input type="radio" id="health{{ idx }}" name="policy_index" value="{{ idx }}">
+            <label for="health{{ idx }}">{{ policy.policy_name }} - Sum Assured: {{ policy.sum_assured }}, Premium: {{ policy.premium }}, Term: {{ policy.term }} year(s)</label><br>
+        {% endfor %}
+        <input type="hidden" name="category" value="health">
+        <input type="submit" value="Select Health Insurance">
+    </form>
+
+    <form method="post" action="{{ url_for('select_policy') }}">
+        <h2>Motor Insurance</h2>
+        {% for idx, policy in enumerate(motor_insurances) %}
+            <input type="radio" id="motor{{ idx }}" name="policy_index" value="{{ idx }}">
+            <label for="motor{{ idx }}">{{ policy.policy_name }} - Sum Assured: {{ policy.sum_assured }}, Premium: {{ policy.premium }}, Term: {{ policy.term }} year(s)</label><br>
+        {% endfor %}
+        <input type="hidden" name="category" value="motor">
+        <input type="submit" value="Select Motor Insurance">
+    </form>
+
+    <form method="post" action="{{ url_for('select_policy') }}">
+        <h2>General Insurance</h2>
+        {% for idx, policy in enumerate(general_insurances) %}
+            <input type="radio" id="general{{ idx }}" name="policy_index" value="{{ idx }}">
+            <label for="general{{ idx }}">{{ policy.policy_name }} - Sum Assured: {{ policy.sum_assured }}, Premium: {{ policy.premium }}, Term: {{ policy.term }} year(s)</label><br>
+        {% endfor %}
+        <input type="hidden" name="category" value="general">
+        <input type="submit" value="Select General Insurance">
+    </form>
+
+    <br>
+    <a href="{{ url_for('customer_dashboard') }}">Back to Dashboard</a>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+</body>
+</html>

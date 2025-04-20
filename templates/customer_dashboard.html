@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Dashboard</title>
+</head>
+<body>
+    <h1>Customer Dashboard</h1>
+    <h2>Welcome, {{ customer.Customer_Name }}</h2>
+    <h3>Your Details:</h3>
+    <ul>
+        <li>Customer ID: {{ customer.Customer_id }}</li>
+        <li>Age: {{ customer.Customer_Age }}</li>
+        <li>Gender: {{ customer.Customer_Gender }}</li>
+        <li>Contact Number: {{ customer.Contact_Number }}</li>
+        <li>Email ID: {{ customer.Email_Id }}</li>
+        <li>Address: {{ customer.Address }}</li>
+        <li>Nominee Name: {{ customer.Nominee_Name }}</li>
+        <li>Nominee Relationship: {{ customer.Nominee_relationship }}</li>
+    </ul>
+
+    <h3>Your Policies:</h3>
+    {% if policies %}
+    <table border="1" cellpadding="5" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Policy ID</th>
+                <th>Policy Name</th>
+                <th>Sum Assured</th>
+                <th>Premium</th>
+                <th>Term (years)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for policy in policies %}
+            <tr>
+                <td>{{ policy.Policy_id }}</td>
+                <td>{{ policy.Policy_Name }}</td>
+                <td>{{ policy.Sum_Assured }}</td>
+                <td>{{ policy.Premium }}</td>
+                <td>{{ policy.Term }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>You have no policies yet.</p>
+    {% endif %}
+
+    <br>
+    <a href="{{ url_for('select_policy') }}">Select New Policy</a><br><br>
+    <a href="{{ url_for('logout') }}">Logout</a>
+</body>
+</html>

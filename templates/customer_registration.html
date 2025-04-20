@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Registration</title>
+</head>
+<body>
+    <h1>Customer Registration</h1>
+    <form method="post" action="{{ url_for('customer_registration') }}">
+        <label for="customer_name">Full Name:</label><br>
+        <input type="text" id="customer_name" name="customer_name" required><br><br>
+
+        <label for="customer_age">Age:</label><br>
+        <input type="number" id="customer_age" name="customer_age" min="18" max="130" required><br><br>
+
+        <label for="customer_gender">Gender (male, female, Others):</label><br>
+        <input type="text" id="customer_gender" name="customer_gender" required><br><br>
+
+        <label for="contact_number">Contact Number:</label><br>
+        <input type="text" id="contact_number" name="contact_number" pattern="\d{10}" required><br><br>
+
+        <label for="email_id">Email Id:</label><br>
+        <input type="email" id="email_id" name="email_id" required><br><br>
+
+        <label for="password_user">Password:</label><br>
+        <input type="password" id="password_user" name="password_user" required><br><br>
+
+        <label for="address">Address:</label><br>
+        <textarea id="address" name="address" rows="3" cols="30" required></textarea><br><br>
+
+        <label for="nominee_name">Nominee Name:</label><br>
+        <input type="text" id="nominee_name" name="nominee_name" required><br><br>
+
+        <label for="nominee_relationship">Nominee Relationship:</label><br>
+        <input type="text" id="nominee_relationship" name="nominee_relationship" required><br><br>
+
+        <input type="submit" value="Register">
+    </form>
+    <br>
+    <a href="{{ url_for('home') }}">Back to Home</a>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+</body>
+</html>
